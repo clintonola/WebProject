@@ -12,44 +12,46 @@
   </head>
   <body>
     <h1>DISPLAY</h1>
-    <!-- <p>Hello <%= user.charAt(0).toUpperCase() + user.slice(1)%></p> -->
     <div class="container">
       <div id="data">
-        <form action="/addWeblink", method="GET" >
-          <input type="text" name="name" id="name" placeholder="Enter Link Name" />
+        <form action="/addWeblink" , method="GET">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter Link Name"
+          />
           <input type="text" name="url" id="link" placeholder="Enter Link" />
           <button type="submit" value="Submit">Add</button>
         </form>
       </div>
-      <form  method="GET" >
+      <form method="GET">
         <table id="tableLinks">
-         <thead>
-          <tr>
-            <th></th>
-           <th>Name</th>
-           <th>Link</th>
-         </tr>
-         </thead>
-         <tbody id="tableLinksBody" >
-          <!-- <tr>
-            <td><input type="checkbox" name="id" value = "1" /></td>
-           <td>Vcenter</td>
-           <td><a href=https://binarypiano.com>link</a></td>
-         </tr>
-         <tr>
-          <td><input type="checkbox" name="id" value = "2" /></td>
-           <td>Portal</td>
-           <td><a href=https://binarypiano.com>link</a></td>
-         </tr>
-         <tr>
-          <td><input type="checkbox" name="id" value = "3" /></td>
-           <td>ONEFS</td>
-           <td><a href=https://binarypiano.com>link</a></td>
-         </tr> -->
-         </tbody>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody id="tableLinksBody"></tbody>
         </table>
-        <button type="submit" name="action" formaction="/deleteWeblink" value="delete" >Delete</button>
-        <button type="submit" name="action" formaction="/updateWeblink" value="update" >Update</button>
+        <button
+          type="submit"
+          name="action"
+          formaction="/deleteWeblink"
+          value="delete"
+        >
+          Delete
+        </button>
+        <button
+          type="submit"
+          name="action"
+          formaction="/updateWeblink"
+          value="update"
+        >
+          Update
+        </button>
       </form>
       <a href="/users/logout">Logout</a>
     </div>

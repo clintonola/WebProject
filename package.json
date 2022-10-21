@@ -1,0 +1,15 @@
+{
+  "name": "clint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "postgres": "^3.3.1"
+  }
+}

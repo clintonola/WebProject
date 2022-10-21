@@ -18,7 +18,7 @@ let name = null;
 
 function checkUser(email, pass) {
    const hasUser = sql`
-       SELECT id, name FROM users WHERE email = ${email} AND password = ${pass}
+      SELECT id, name FROM users WHERE email = ${email} AND password = ${pass}
    `;
    return hasUser;
 }
@@ -26,7 +26,6 @@ app.post('/login', async function (req, res) {
    console.log(req.body);
    const user = await checkUser(req.body.email, req.body.password);
    if (user.length > 0) {
-      // res.redirect(`/display.html?id=${user[0].id}&name=${user[0].name}`);
       userId = user[0].id;
       name = user[0].name;
       res.redirect(`/display.html`);
@@ -35,9 +34,28 @@ app.post('/login', async function (req, res) {
    }
 })
 
+function registerUser(name, email, pass) {
+   const addUser = sql`
+      INSERT INTO users (name, email, password) VALUES (${name}, ${email}, ${pass})
+   `;
+   return addUser.execute();
+}
+app.post('/register', function (req, res) {
+   console.log(req.body);
+   if (req.body.password !== req.body.confirmPassword) {
+      res.redirect(400, '/register.html');
+   } else {
+      registerUser(req.body.name, req.body.email, req.body.password);
+      const user = checkUser(req.body.email, req.body.password);
+      userId = user[0].id;
+      name = user[0].name;
+      res.redirect('/display.html');
+   }
+})
+
 function addWeblink(name, url) {
    const addLink = sql`
-       INSERT INTO links (name, url, user_id) VALUES (${name}, ${url}, ${userId})
+      INSERT INTO links (name, url, user_id) VALUES (${name}, ${url}, ${userId})
    `;
    addLink.execute();
 }
@@ -51,7 +69,7 @@ function deleteWeblink(id) {
    const ids = [].concat(id);
    ids.forEach(id => {
       const deleteLink = sql`
-          DELETE FROM links WHERE id = ${id} AND user_id = ${userId}
+         DELETE FROM links WHERE id = ${id} AND user_id = ${userId}
       `;
       deleteLink.execute();
    })
@@ -69,10 +87,8 @@ function updateWeblink(id, name, url) {
    const names = [].concat(name);
    const urls = [].concat(url);
    for(let i = 0; i < ids.length; i++) {
-      console.log(`UPDATE links SET name = ${names[i]} AND url = ${urls[i]} 
-         WHERE id = ${ids[i]} AND user_id = ${id}`)
       const updateLink = sql`
-          UPDATE links SET name = ${names[i]}, url = ${urls[i]} WHERE id = ${ids[i]}
+         UPDATE links SET name = ${names[i]}, url = ${urls[i]} WHERE id = ${ids[i]}
       `;
       updateLink.execute();
    }
@@ -87,7 +103,7 @@ app.get('/updateWeblink', function (req, res) {
 
 async function getWeblinks() {
    const getLinks = sql`
-       SELECT * FROM links WHERE user_id = ${userId}
+      SELECT * FROM links WHERE user_id = ${userId}
    `;
    return getLinks;
 }

@@ -8,13 +8,21 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
     />
-    <title>LOGIN</title>
+    <title>REGISTER</title>
   </head>
   <body>
-    <h1>LOGIN</h1>
+    <h1>REGISTER</h1>
 
-    <form action="/login" method="POST">
+    <form action="/register" method="POST">
       <div>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Name"
+          required
+        />
+      </div>
         <input
           type="email"
           id="email"
@@ -33,9 +41,18 @@
         />
       </div>
       <div>
-        <input type="submit" value="login" />
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          required
+        />
       </div>
-      <a href="/register.html">Register</a>
+      <div>
+        <input type="submit" value="register" />
+      </div>
+      <a href="/login.html">Login</a>
     </form>
   </body>
 </html>

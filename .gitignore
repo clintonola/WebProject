@@ -1,2 +1,5 @@
-
+package-lock*
+buid/
+dist/
 node_modules
+.env

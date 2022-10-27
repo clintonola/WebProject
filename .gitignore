@@ -3,3 +3,4 @@ buid/
 dist/
 node_modules
 .env
+pgdata

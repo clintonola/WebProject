@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: clintonolayiwola
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: clintonolayiwola
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '8080:8080'
+  web:
+    image: fped-example
+    depends_on:
+      - db
+    ports:
+      - '5000:5000'
